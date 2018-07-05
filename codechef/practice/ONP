@@ -1,0 +1,80 @@
+#include <iostream>
+#include<cmath>
+#include<climits>
+#include<stack>
+using namespace std;
+int main() {
+	// your code goes here
+	int t;
+    cin>>t;
+   while(t--)
+   {
+       string exp;
+       cin>>exp;
+       stack<char> abcd,efgh;
+       int i;
+       for(i=0;i<exp.length();i++)
+       {
+           if(exp.at(i)=='(')
+           abcd.push(exp.at(i));
+           else if(exp.at(i)==')')
+           {
+               while(abcd.top()!='(')
+               {
+                   efgh.push(abcd.top());
+                   abcd.pop();
+               }
+               abcd.pop();
+           }
+           else if(exp.at(i)=='^')
+           {
+               while(abcd.top()=='+'||abcd.top()=='-'||abcd.top()=='*'||abcd.top()=='/')
+               {
+                   efgh.push(abcd.top());
+                   abcd.pop();
+               }
+               abcd.push(exp.at(i));
+           }
+           else if(exp.at(i)=='*'||exp.at(i)=='/')
+           {
+               while(abcd.top()=='+'||abcd.top()=='-'||abcd.top()=='*'||abcd.top()=='/')
+               {
+                   efgh.push(abcd.top());
+                   abcd.pop();
+               }
+               abcd.push(exp.at(i));
+           }
+           else if(exp.at(i)=='+'||exp.at(i)=='-')
+           {
+               while(abcd.top()=='+'||abcd.top()=='-')
+               {
+                   efgh.push(abcd.top());
+                   abcd.pop();
+               }
+               abcd.push(exp.at(i));
+           }
+           else
+           efgh.push(exp.at(i));
+           
+       }
+     /*  while(!abcd.empty()&&abcd.top()!='(')
+       {
+           efgh.push(abcd.top());
+           abcd.pop();
+       }
+       abcd.pop();*/
+       stack<char> efgh1;
+       while(!efgh.empty())
+       {
+           efgh1.push(efgh.top());
+           efgh.pop();
+       }
+       while(!efgh1.empty())
+       {
+           cout<<efgh1.top();
+           efgh1.pop();
+       }
+       cout<<endl;
+   }
+	return 0;
+}
