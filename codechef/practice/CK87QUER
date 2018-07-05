@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    ios_base::sync_with_stdio(false);
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long int y;
+	    cin>>y;
+	    long long int count=0;
+	    for(int i=1;i<=700 && i<=y;i++)
+	    {
+	        //cout<<sqrt(y-i)<<" ";
+	        count+=(int)floor(sqrt(y-i));
+	    }
+	    cout<<count<<endl;
+	}
+	return 0;
+} 
