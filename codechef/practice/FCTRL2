@@ -1,0 +1,41 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+ 
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+    int product[200];
+    int activated[200];
+	int pos,i;
+	product[0]=1;
+	for(i=1;i<200;i++)
+	{
+	    product[i]=0;
+	    activated[i]=0;
+	}
+	int n;
+	cin>>n;
+ 
+	for(i=1;i<=n;i++)
+	{
+       int carry=0,temp;pos=0;
+	    do
+	    {
+	        temp=product[pos];
+	       product[pos]=((temp*i)+carry)%10;
+	       carry=((temp*i)+carry)/10;
+	       if(carry>0)
+	       activated[pos+1]=1;
+	       pos++;
+        }while(activated[pos]==1);
+    }
+	for(i=pos-1;i>=0;i--)
+	cout<<product[i];
+    cout<<endl;
+	}
+	return 0;
+}
