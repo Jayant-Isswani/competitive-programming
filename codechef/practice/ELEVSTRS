@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	int test, v1, v2, n;
+	cin>>test;
+	while(test--){
+	    cin>>n>>v1>>v2;
+	    double st1 = (sqrt(2)*n)/v1;
+	    double et2 = (2.0*n)/v2;
+	    if(st1 > et2){
+	        printf("Elevator\n");
+	    }else if(et2 > st1){
+	        printf("Stairs\n");
+	    }
+	}
+	return 0;
+}
