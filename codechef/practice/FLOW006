@@ -1,0 +1,22 @@
+#include <iostream>
+#include<cmath>
+#include<climits>
+#include<stack>
+using namespace std;
+int main() {
+	// your code goes here
+	int t;
+    cin>>t;
+   while(t--)
+   {
+       int n;
+       cin>>n;
+       int sum=0,i;
+       for(i=n;i>0;i=i/10)
+       {
+           sum+=i%10;
+       }
+       cout<<sum<<endl;
+   }
+	return 0;
+}
