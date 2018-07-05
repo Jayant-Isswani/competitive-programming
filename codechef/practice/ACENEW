@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    long long int age[n+1];
+	    for(int i=1;i<=n;i++)
+	    {
+	        cin>>age[i];
+	    }
+	    long long int threshold;
+	    cin>>threshold;
+	    age[0]=0;
+	    sort(age,age+n+1);
+	    int l,r;
+	    int count=0;
+	    /*for(int i=1;i<=n;i++)
+	    cout<<age[i]<<" ";
+	    cout<<endl;*/
+	    for(int i=1;i<=n;i++)
+	    {
+	        int l=i+1,r=n;
+	        while(l<r)
+	        {
+	            if(age[i]+age[l]+age[r]>threshold)
+	            {
+	                count+=r-l;
+	                r--;
+	            }
+	            else
+	            l++;
+	        }
+	    }
+	    cout<<count<<endl;
+	}
+	return 0;
+} 
