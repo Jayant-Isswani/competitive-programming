@@ -1,0 +1,101 @@
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+ 
+#define ll long long int
+ 
+using namespace std;
+ 
+vector<ll> make_partition(ll* arr,int n,int c,ll k)
+{
+    int pos=0;
+    ll power=pow(2,n);
+    vector<ll> subarr;
+    ll prod;
+	char flag='0';
+	int j;
+	for(ll i=1;i<power;i++)
+	{
+	    prod=1;
+	    flag='0';
+	    /*cout<<"Start:"<<" ";
+	    cout<<i<<" "<<prod<<" "<<endl;*/
+	    for(j=0;j<n;j++)
+	    {
+	        if(i&(1<<j))
+	        {
+	           // cout<<"Here: "<<i<<" "<<j<<" "<<prod<<endl;
+	            if(arr[j+c]>k/prod)
+	            {
+	                flag='1';
+	                break;
+	            }
+	           prod*=arr[j+c];
+	        }
+	    }
+	        if(flag=='0'&&prod<=k)
+	        {
+	          //  cout<<"Pos is: "<<pos<<" "<<prod<<endl;
+	            subarr.push_back(prod);
+	            //cout<<subarr[pos]<<" "<<i<<" "<<j+c<<endl;
+	            pos++;
+	        }
+	}
+	//cout<<subarr.size()<<" is ";
+	return subarr;
+}
+ 
+ 
+ 
+int main() {
+	// your code goes here
+	int n;
+	ll k;
+	cin>>n>>k;
+	ll arr[n];
+	for(int i=0;i<n;i++)
+	{
+	    cin>>arr[i];
+	}
+	ll count=0;
+	vector<ll> lower_half=make_partition(arr,n/2,0,k);
+	//cout<<endl;
+	vector<ll> upper_half=make_partition(arr,n-n/2,n/2,k);
+	ll size1=lower_half.size();
+	int size2=upper_half.size();
+	//cout<<size1<<" "<<size2<<" ";
+	/*for(int i=0;i<size1;i++)
+	{
+	    cout<<lower_half[i]<<" ";
+	}
+	cout<<endl;
+	for(int i=0;i<size2;i++)
+	{
+	    cout<<upper_half[i]<<" ";
+	}
+	cout<<endl;*/
+	sort(lower_half.begin(),lower_half.end());
+	sort(upper_half.begin(),upper_half.end());
+	for(int i=0;i<size1;i++)
+	{
+	   int start=0,end=size2-1;
+	   while(start<=end)
+	   {
+	      // cout<<"Start: "<<start<<" "<<end<<endl;
+	       int mid=(start+end)/2;
+	       if(upper_half[mid]>k/lower_half[i])
+	       {
+	           end=mid-1;
+	       }
+	       if(upper_half[mid]<=k/lower_half[i])
+	       {
+	           count+=mid-start+1;
+	           //cout<<count<<" "<<mid<<" "<<start<<endl;
+	           start=mid+1;
+	       }
+	   }
+	}
+	cout<<count+size1+size2<<endl;
+	return 0;
+} 
