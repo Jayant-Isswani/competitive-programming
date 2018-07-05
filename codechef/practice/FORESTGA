@@ -1,0 +1,76 @@
+/*FORESTGA problem - codechef*/
+            #include <iostream>
+            #include<bits/stdc++.h>
+            #include<climits>
+            #include<cmath>
+            #define lli long long int
+            #define ui unsigned int
+            using namespace std;
+            int main() {
+            // your code goes here
+            /*Input values*/
+            ui n;
+            scanf("%u",&n);
+            lli w,l;
+            scanf("%lld%lld",&w,&l);
+            //printf("%lld %lld",w,l);
+            lli height[n],growth[n];
+            ui i;
+            /*Defining two limits- the minimum and the maximum possible months to get wood of w size*/
+            lli maxmonth=LLONG_MAX;
+            for(i=0;i<n;i++)
+            {
+            scanf("%lld%lld",&height[i],&growth[i]);
+            // printf("%lld ",(w-height[i])/growth[i]+1);
+            if(w>=l)
+            {
+            if(ceil(1.0*(w-height[i])/growth[i])<=maxmonth)
+            maxmonth=ceil(1.0*(w-height[i])/growth[i]);
+            }
+            /*else
+            {
+            if(ceil(1.0*(l-height[i])/growth[i])<=maxmonth)
+            maxmonth=ceil(1.0*(l-height[i])/growth[i]);
+            }*/
+            }
+            /*Minimum possible month would be zero*/
+            lli month=0ll,ans=LLONG_MAX;
+            // cout<<month<<" "<<maxmonth<<" ";
+            while(month<=maxmonth)
+            {
+            lli mid;
+            mid=(month+maxmonth)/2;
+            
+            // printf("%d ",mid);
+            lli sum=0ll;
+            /*Adding the heights of trees after mid months*/
+            for(i=0;i<n;i++)
+            {
+            //printf("%lld %lld %lld %lld is ",height[i],growth[i],mid,height[i]+mid*growth[i]);
+            /*Possibility of overflow here-but unable to find*/
+            if(height[i]+mid*growth[i]>=l)
+            sum+=height[i]+mid*growth[i];
+            if(sum>=w)
+            break;
+            }
+            // printf("%lld ",sum);
+            if(sum>w)
+            {
+              /*Keeps on finding the minimum month which satisfies the condition*/
+            if(ans>mid)
+            ans=mid;
+            // printf("%d\n",ans);
+            maxmonth=mid-1;
+            }
+            if(sum==w)
+            {
+                ans=mid;
+                break;
+            }
+            
+            if(sum<w)
+            month=mid+1;
+            }
+            printf("%lld",ans);
+            return 0;
+        }    
