@@ -1,0 +1,47 @@
+#include <iostream>
+#include<cmath>
+#include<climits>
+using namespace std;
+ 
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    int arr[n][n];
+	    int i,j;
+	    for(i=0;i<n;i++)
+	    {
+	        for(j=0;j<=i;j++)
+	        {
+	            cin>>arr[i][j];
+	        }
+	    }
+	    int sum[n][n];
+	    for(i=0;i<n;i++)
+	    {
+	        for(j=0;j<=i;j++)
+	        {
+	            if(i==0&&j==0)
+	            sum[i][j]=arr[i][j];
+	            else if(j==0)
+	            sum[i][j]=arr[i][j]+sum[i-1][j];
+	            else if(j==i)
+	            sum[i][j]=arr[i][j]+sum[i-1][j-1];
+	            else
+	            sum[i][j]=arr[i][j]+max(sum[i-1][j],sum[i-1][j-1]);
+	        }
+	    }
+	    int max_sum=INT_MIN;
+	    for(i=0;i<n;i++)
+	    {
+	    if(max_sum<sum[n-1][i])
+	      max_sum=sum[n-1][i];
+	    }
+	    cout<<max_sum<<endl;
+	}
+	return 0;
+}
