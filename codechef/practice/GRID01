@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+ 
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	long long int solution[10001][10001];
+	solution[1][1]=0;
+	
+	for(int i=2;i<=10000;i++)
+	solution[1][i]=solution[1][i-1]+2;
+	
+	for(int j=2;j<=10000;j++)
+	solution[j][1]=solution[j-1][1]+2;
+	
+	for(int i=2;i<=10000;i++)
+	{
+	    for(int j=2;j<=10000;j++)
+	    {
+	        solution[i][j]=solution[i][j-1]+solution[i-1][j]-solution[i-1][j-1]+8;
+	    }
+	}
+	while(t--)
+	{
+	    int n,m;
+	    cin>>n>>m;
+	    cout<<solution[n][m]<<endl;
+	}
+	return 0;
+}
