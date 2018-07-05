@@ -1,0 +1,47 @@
+#include <iostream>
+#include<cmath>
+#include<climits>
+using namespace std;
+int main() {
+	// your code goes here
+	int t;
+   cin>>t;
+   while(t--)
+   {
+       int p;
+       cin>>p;
+       int count=0,num=2048;
+       if(p<=2048)
+       {
+       while(p>0&&num>0)
+       {
+           if(p/num>0)
+           {
+               p=p-num;
+               count++;
+               
+           }
+           num=num/2;
+       }
+       }
+       else
+       {
+           count=p/2048;
+           p=p-count*2048;
+            while(p>0&&num>0)
+       {
+           
+           if(p/num>0)
+           {
+               p=p-num;
+               count++;
+               
+           }
+           
+           num=num/2;
+       }
+       }
+       cout<<count<<endl;
+   }
+	return 0;
+}
