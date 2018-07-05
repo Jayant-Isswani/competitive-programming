@@ -1,0 +1,17 @@
+#include <iostream>
+#include<cmath>
+#include<climits>
+#include<stack>
+using namespace std;
+int main() {
+	// your code goes here
+	int a,b;
+	cin>>a>>b;
+	int c=a-b;
+	if(c%10==9)
+	c-=1;
+	else
+	c+=1;
+	cout<<c<<endl;
+	return 0;
+}
