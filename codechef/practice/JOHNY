@@ -1,0 +1,37 @@
+#include <iostream>
+#include<bits/stdc++.h>
+#include<vector>
+#include<climits>
+using namespace std;
+ 
+int main() {
+	// your code goes here
+	unsigned short int t;
+	cin>>t;
+	while(t--)
+	{
+	    unsigned short int n;
+	    cin>>n;
+	    vector <pair <int,int > > vect;
+	    int i;
+	    for(i=0;i<n;i++)
+	    {
+	        int element;
+	        cin>>element;
+	        vect.push_back(make_pair(element,i));
+	    }
+	    int k;
+	    cin>>k;
+	    int element;
+	    element=vect[k-1].first;
+	   // cout<<element;
+	    sort(vect.begin(),vect.end());
+	    for(i=0;i<n;i++)
+	    {
+	        if(vect[i].first==element)
+	        cout<<i+1;
+	    }
+	    cout<<endl;
+	 }
+	 return 0;
+}
