@@ -1,0 +1,33 @@
+#include <iostream>
+#include<bits/stdc++.h>
+#include<vector>
+#include<climits>
+using namespace std;
+ 
+int main() {
+	// your code goes here
+	unsigned short int t;
+	cin>>t;
+	while(t--)
+	{
+	    unsigned short int n;
+	    cin>>n;
+	    vector <int > vect;
+	    int i;
+	    for(i=0;i<n;i++)
+	    {
+	        int element;
+	        cin>>element;
+	        vect.push_back(element);
+	    }
+	    sort(vect.begin(),vect.end());
+	    int min_dif=INT_MAX;
+	    for(i=0;i<n-1;i++)
+	    {
+	        if(min_dif>vect[i+1]-vect[i])
+	        min_dif=vect[i+1]-vect[i];
+	    }
+	    cout<<min_dif<<endl;
+	 }
+	 return 0;
+}
