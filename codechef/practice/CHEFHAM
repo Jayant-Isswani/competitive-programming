@@ -1,0 +1,153 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int arr[n];
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        
+        
+        if(n==1){
+            cout<<"0"<<endl<<arr[0]<<endl;
+        }
+        
+        
+        else if(n==2){
+            if(arr[0]==arr[1]){
+                cout<<"0"<<endl;
+                cout<<arr[0]<<" "<<arr[1]<<endl;
+            }
+            else{
+                cout<<"2"<<endl;
+                cout<<arr[1]<<" "<<arr[0]<<endl;
+            }
+        }
+        
+        
+        else if(n==3){
+            if(arr[0]==arr[1] && arr[1]==arr[2]){
+                cout<<"0"<<endl;
+                cout<<arr[0]<<" "<<arr[1]<<" "<<arr[2]<<endl;
+            }
+            else if(arr[0]==arr[1] || arr[1]==arr[2] ||arr[0]==arr[2]){
+                cout<<"2"<<endl;
+                if(arr[0]==arr[2]){
+                    cout<<arr[1]<<" "<<arr[0]<<" "<<arr[2]<<endl;
+                }
+                if(arr[1]==arr[2]){
+                    cout<<arr[1]<<" "<<arr[0]<<" "<<arr[2]<<endl;
+                }
+                if(arr[0]==arr[1]){
+                    cout<<arr[2]<<" "<<arr[0]<<" "<<arr[1]<<endl;
+                }
+            }
+            else{
+                cout<<"3"<<endl;
+                cout<<arr[2]<<" "<<arr[0]<<" "<<arr[1]<<endl;
+            }
+        }
+        
+        
+        else{
+            cout<<n<<endl;
+            map<int,int> freq;
+            freq.clear();
+            for(int i=0;i<n;i++){
+                freq[arr[i]]=0;
+            }
+            for(int i=0;i<n;i++){
+                freq[arr[i]]++;
+            }
+            int freq1[n],freq2[n];
+            int count1=0,count2=0;
+            map<int,bool> hasOccured;
+            hasOccured.clear();
+            for(int i=0;i<n;i++){
+                //cout<<hasOccured[arr[i]]<<" is ";
+                if(freq[arr[i]]==1)
+                    freq1[count1++]=arr[i];
+                if(freq[arr[i]]==2 && hasOccured[arr[i]]==false){
+                    freq2[count2++]=arr[i];
+                    hasOccured[arr[i]]=true;
+                }
+            }
+            //cout<<count1<<" "<<count2<<" are"<<endl;
+            map<int,int> replace;
+            replace.clear();
+            if(count1>0){
+            replace[freq1[0]]=freq1[count1-1];
+            for(int i=1;i<count1;i++){
+                replace[freq1[i]]=freq1[i-1];
+            }
+            }
+            if(count2>0){
+            replace[freq2[0]]=freq2[count2-1];
+            for(int i=1;i<count2;i++){
+                replace[freq2[i]]=freq2[i-1];
+            }
+            }
+            int arr1[n];
+            for(int i=0;i<n;i++){
+                arr1[i]=replace[arr[i]];
+            }
+            
+            if(count1 == 1){
+                for(int i=0;i<n;i++){
+                    if(arr1[i]==freq1[0]){
+                        int temp = arr1[i];
+                        if(i==n-1){
+                            arr1[i]=arr1[i-1];
+                            arr1[i-1]=temp;
+                        }
+                        else{
+                            arr1[i]=arr1[i+1];
+                            arr1[i+1]=temp;
+                        }
+                    }
+                }
+            }
+            
+            if(count2 == 1){
+                int index1=-1,index2=-1,nindex1=-1,nindex2=-1;
+               for(int i=0;i<n;i++){
+                   if(arr1[i]==freq2[0]){
+                       if(index1==-1){
+                           index1=i;
+                       }
+                       else if(index2==-1){
+                           index2=i;
+                       }
+                   }
+                   else{
+                       if(nindex1==-1){
+                           nindex1=i;
+                       }
+                       else if(nindex2==-1){
+                           nindex2=i;
+                       }
+                   }
+               }
+               //cout<<index1<<" "<<index2<<" "<<nindex1<<" "<<nindex2<<endl;
+               
+               int temp1 = arr1[index1];
+               arr1[index1]=arr1[nindex1];
+               arr1[nindex1]=temp1;
+               
+               temp1 = arr1[index2];
+               arr1[index2]=arr1[nindex2];
+               arr1[nindex2]=temp1;
+            }
+            for(int i=0;i<n;i++){
+                cout<<arr1[i]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+	return 0;
+} 
