@@ -1,0 +1,30 @@
+#include <iostream>
+    using namespace std;
+     
+    int main() {
+        int t;
+        cin>>t;
+        while(t--)
+        {
+        	int x,y,k,n;
+        	cin>>x>>y>>k>>n;
+            int element1,element2;
+            int i;
+            int diff=x-y;
+            int flag=0;
+            for(i=0;i<n;i++)
+            {
+                cin>>element1>>element2;
+                if(element1>=diff && element2<=k)
+                {
+                    // cout<<i<<endl;
+                    flag=1;
+                }
+            }
+            if(flag==1)
+                cout<<"LuckyChef"<<endl;
+            else
+                cout<<"UnluckyChef"<<endl;
+        }
+        return 0;
+    }  
