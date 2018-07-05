@@ -1,0 +1,47 @@
+class subarrays {
+    public static void main(String q[])throws java.lang.Exception
+    {
+        java.util.Scanner br=new java.util.Scanner(System.in);
+        int k,t;
+        t=br.nextInt();
+        for(k=0;k<t;k++)
+        {
+            
+        
+        int n;
+        n=br.nextInt();
+        int x[]=new int[n];
+        int i;
+        for(i=0;i<n;i++)
+        {
+            x[i]=br.nextInt();
+        
+        }
+        int c,c1,j;
+        c1=0;
+        int s,p;
+        s=0;p=1;
+        for(i=0;i<n;i++)
+        {
+            for(c=1;c<=n;c++)
+            {
+                for(j=i;j<c;j++)
+                {
+                    s=s+x[j];
+                    p=p*x[j];
+                }
+                if(s==p)
+                    c1++;
+                s=0;p=1;
+ 
+ 
+    }
+ 
+}
+ 
+        System.out.println(c1);
+        }
+    br.close();
+    }
+ 
+}
