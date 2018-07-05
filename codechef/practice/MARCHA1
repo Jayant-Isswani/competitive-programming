@@ -1,0 +1,46 @@
+#include <iostream>
+#include<vector>
+#include<bits/stdc++.h>
+#include<cmath>
+#define usi unsigned short int
+#define lli long long int
+using namespace std;
+ 
+int main() {
+	// your code goes here
+	usi t;
+	scanf("%hu",&t);
+	while(t--)
+	{
+	    usi m,n;
+	    scanf("%hu%hu",&n,&m);
+	    vector < int > vect;
+	    lli i;
+	    for(i=0;i<n;i++)
+	    {
+	        usi element;
+	        scanf("%hu",&element);
+	        vect.push_back(element);
+	    }
+	    //printf("%hu %hu ",n,pow(2,n));
+	    for(i=1;i<(int)pow(2,n);i++)
+	    {
+	        lli sum=0ll;
+	        int j;
+	        for(j=0;j<n;j++)
+	        {
+	            if((i&(1<<j))>0)
+	            sum+=vect[n-j-1];
+	        }
+	        //cout<<sum<<" ";
+	        if(sum==m)
+	        break;
+	    }
+	    //printf("%lld ",i);
+	    if(i<pow(2,n))
+	    printf("Yes\n");
+	    else
+	    printf("No\n");
+	}
+	return 0;
+}  
