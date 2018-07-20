@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include<math.h>
+int main() {
+    int t;
+    scanf("%d",&t);
+    int i;
+    for(i=0;i<t;i++)
+    {
+        double s,v;
+        scanf("%lf%lf",&s,&v);
+        double t;
+        t=2.0*s/(3.0*v);
+        printf("%.9lf\n",t);
+    }
+	return 0;
+}
+ 
