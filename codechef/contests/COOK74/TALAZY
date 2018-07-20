@@ -1,0 +1,32 @@
+#include <stdio.h>
+ 
+int main(void) {
+	int t0;
+	scanf("%d",&t0);
+	int i;
+	for(i=0;i<t0;i++)
+	{
+	    long long int n,m,b;
+	    long long int t=0ll;
+	    scanf("%lld%lld%lld",&n,&b,&m);
+	    while(n>0ll)
+	    {   long long int n1;
+	        if(n%2ll!=0ll)
+	        {
+	            n1=(n+1ll)/2ll;
+	           n=n-n1;
+	            t=t+m*n1+b;
+	            m=m*2ll;
+	        }
+	         else
+	        {
+	            n1=n/2ll;
+	            n=n-n1;
+	            t=t+m*n1+b;
+	            m=m*2ll;
+	        }
+	    }
+	    printf("%lld\n",t-b);
+	}
+	return 0;
+}
