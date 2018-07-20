@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int countOccurence(int pos,char matrix[][1001],string str,int i,int j,int n)
+{
+    if(i<0 || i>=n || j<0 || j>=n)
+    return 0;
+    else if(str[pos]!=matrix[i][j])
+    return 0;
+    else if(pos==str.length()-1){
+        //cout<<i<<" "<<j<<endl;
+    return 1;
+    }
+    else
+    {
+    return countOccurence(pos+1,matrix,str,i+1,j+1,n)+
+            countOccurence(pos+1,matrix,str,i+1,j-1,n)+
+            countOccurence(pos+1,matrix,str,i-1,j-1,n)+
+            countOccurence(pos+1,matrix,str,i-1,j+1,n);
+    }
+}
+ 
+int main() {
+	int n;
+	cin>>n;
+	char matrix[n][1001];
+	for(int i=0;i<n;i++)
+	{
+	    for(int j=0;j<n;j++)
+	    {
+	        cin>>matrix[i][j];
+	    }
+	}
+	string str;
+	cin>>str;
+	long long int occurence=0;
+	for(int i=0;i<n;i++)
+	{
+	    for(int j=0;j<n;j++)
+	    {
+	        if(str[0]==matrix[i][j])
+	        {
+	            occurence+=countOccurence(0,matrix,str,i,j,n);
+	        }
+	    }
+	}
+	cout<<occurence<<endl;
+	return 0;
+} 
