@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	int n;
+	cin>>n;
+	int arr[n][n];
+	int counter=1;
+	int chance=0;
+	int start=0,end=n-1;
+	while(counter<=n*n)
+	{
+	    //cout<<"Here\n";
+	    if(!(chance&1))
+	    {
+	        for(int i=start;i<=end;i++)
+	        {
+	            arr[start][i]=counter++;
+	        }
+	        for(int i=start+1;i<=end;i++)
+	        {
+	            arr[i][end]=counter++;
+	        }
+	        for(int i=end-1;i>=start;i--)
+	        {
+	            arr[end][i]=counter++;
+	        }
+	        for(int i=end-1;i>=start+1;i--)
+	        {
+	            arr[i][start]=counter++;
+	        }
+	    }
+	    else
+	    {
+	        for(int i=start;i<=end;i++)
+	        {
+	            arr[i][start]=counter++;
+	        }
+	        for(int i=start+1;i<=end;i++)
+	        {
+	            arr[end][i]=counter++;
+	        }
+	        for(int i=end-1;i>=start;i--)
+	        {
+	            arr[i][end]=counter++;
+	        }
+	        for(int i=end-1;i>=start+1;i--)
+	        {
+	            arr[start][i]=counter++;
+	        }
+	    }
+	    //arr[start+1][start+1]=counter++;
+	    chance=chance^1;
+	    start++;
+	    end--;
+	}
+	for(int i=0;i<n;i++)
+	{
+	    for(int j=0;j<n;j++)
+	    {
+	        cout<<arr[i][j]<<" ";
+	    }
+	    cout<<endl;
+	}
+	return 0;
+} 
