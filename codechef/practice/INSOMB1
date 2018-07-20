@@ -1,0 +1,19 @@
+/*package whatever //do not write package name here */
+ 
+import java.io.*;
+import java.math.BigInteger;
+import java.util.Scanner;
+ 
+class GFG {
+	public static void main (String[] args)throws IOException {
+	    Scanner sc=new Scanner(System.in);
+		BigInteger b1;
+		String element;
+		element=sc.next();
+		b1=new BigInteger(element);
+		if(b1.isProbablePrime(1))
+		System.out.println("PRIME");
+		else
+		System.out.println("COMPOSITE");
+	}
+} 
