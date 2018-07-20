@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include<math.h>
+int main() {
+    int t;
+    scanf("%d",&t);
+    int i;
+    for(i=0;i<t;i++)
+    {
+        int n,m,c;
+        scanf("%d%d%d",&n,&m,&c);
+        int j;
+        int l=0;
+        for(j=1;j<=sqrt(c);j++)
+        {
+            if(c%j==0)
+            {
+                if(n>=j&&m>=c/j)
+                l++;
+                if(m>=j&&n>=c/j&&j!=c/j)
+                l++;
+            }
+        }
+        printf("%d\n",l);
+    }
+	return 0;
+}
