@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int countInversionMerge(int *arr,int n,int start,int mid,int end)
+{
+    int arr1[end-start+1];
+    int i=start,j=mid,k=end;
+    int count=0;
+    int invCount=0;
+    while(i<=mid-1 && j<=end)
+    {
+        if(arr[i]<=arr[j])
+        arr1[count++]=arr[i++];
+        else
+        {
+            arr1[count++]=arr[j++];
+            invCount+=(mid-i);
+        }
+    }
+    while(i<=mid-1)
+    arr1[count++]=arr[i++];
+    while(j<=end)
+    arr1[count++]=arr[j++];
+    for(int i=0;i<count;i++)
+    {
+        arr[start++]=arr1[i];
+    }
+    return invCount;
+}
+ 
+int countInversion(int *arr,int n,int start,int end)
+{
+    int invCount=0;
+    if(end>start)
+    {
+    int mid=(start+end)/2;
+    invCount+=countInversion(arr,n,start,mid);
+    invCount+=countInversion(arr,n,mid+1,end);
+    invCount+=countInversionMerge(arr,n,start,mid+1,end);
+    }
+    return invCount;
+}
+ 
+int main() {
+	int n;
+	cin>>n;
+	int arr[n];
+	for(int i=0;i<n;i++)
+	{
+	    cin>>arr[i];
+	}
+	cout<<countInversion(arr,n,0,n-1);
+	return 0;
+} 
