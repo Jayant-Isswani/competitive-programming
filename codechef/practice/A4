@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+typedef long double ld;
+ll n, k, mod;
+ll power(ll a, ll b) {
+    if(b==0)
+        return 1;
+    ll temp = power(a, b/2);
+    temp = (temp*temp)%mod;
+    if(b%2)
+        temp = (temp*a)%mod;
+    return temp;
+}
+void lastk() {
+    cout<<fixed<<setw(k)<<setfill('0')<<power(n, n)<<endl;
+}
+void firstk() {
+    ld x = (ld)n*log10((ld)n);
+    x-=(ll)x;
+    x = pow((ld)10, x);
+    cout<<(ll)(x*(mod/10))<<" ";
+}
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--) {
+	    cin>>n>>k;
+	    mod = 1;
+	    for(int i = 0; i<k; i++)
+    	    mod*=10;
+	    firstk();
+	    lastk();
+	}
+	return 0;
+} 
