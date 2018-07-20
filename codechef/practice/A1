@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+bool isSubset(vector<int> arr,int m,int n)
+{
+    if(m==0)
+    return true;
+    if(n==0 && m!=0)
+    return false;
+    if(arr[n-1]<=m)
+    return isSubset(arr,m-arr[n-1],n-1)||isSubset(arr,m,n-1);
+    return isSubset(arr,m,n-1);
+}
+ 
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,m;
+	    cin>>n>>m;
+	    vector<int> arr;
+	    int element;
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>element;
+	        arr.push_back(element);
+	    }
+	    bool result=isSubset(arr,m,n);
+	    if(result==1)
+	    cout<<"Yes"<<endl;
+	    else
+	    cout<<"No"<<endl;
+	}
+	return 0;
+} 
