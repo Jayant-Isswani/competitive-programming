@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+int main() {
+	int n;
+	cin>>n;
+	string arr[n];
+	for(int i=0;i<n;i++)
+	{
+	    cin>>arr[i];
+	}
+	sort(arr,arr+n);
+	int result=0;
+	for(int i=1;i<n;i++)
+	{
+	    int x=min(arr[i].length(),arr[i-1].length());
+	    int count=0;
+	    for(int j=0;j<x;j++)
+	    {
+	        if(arr[i][j]!=arr[i-1][j])
+	        break;
+	        count++;
+	    }
+	    if(count>result)
+	    result=count;
+	}
+	cout<<result;
+	return 0;
+} 
