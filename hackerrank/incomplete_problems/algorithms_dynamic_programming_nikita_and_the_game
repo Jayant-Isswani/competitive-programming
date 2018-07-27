@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+long int cmpfunc(const void *a,const void *b)
+    {
+    return (*(long int *)a-*(long int *)b);
+}
+long int maxpoint(long int arr[],long int n)
+    {
+    long int sum,i;
+    for(i=0;i<n;i++)
+        sum+=arr[i];
+    if(n==0||n==1||sum%2!=0)
+        return 0;
+    else
+        { sum=sum/2;
+        long int arr1[8192],arr2[8192],pos1=0,pos2=0;
+        for(i=n-1;i>=0;i++)
+            {
+            if(sum>arr[i])
+                {
+                while(sum>arr[i])
+                    arr1[pos1++]=arr[i];
+            }
+            else
+                arr2[pos2++]=arr[i];
+        }
+         return 1+max(maxpoint(arr1,pos1),maxpoint(arr2,pos2));
+    }
+}
+int main() {
+    int t;
+    scanf("%d",&t);
+    while(t>0)
+        {
+        long int n;
+        scanf("%ld",&n);
+        long int i,j;
+        long int arr[16384];
+        for(i=0;i<n;i++)
+            scanf("%ld",&arr[i]);
+        qsort(arr,n,sizeof(long int),cmpfunc);
+        long int sum1=maxpoint(arr,n);
+        printf("%ld\n",sum1);
+        t--;
+    }
+    return 0;
+}

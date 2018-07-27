@@ -1,0 +1,57 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <stack>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int n,i;
+    long int maxxor=0l,sor;
+    stack<int> r,s,t;
+    cin>>n;
+    for(i=1;i<=n;i++)
+    {
+       int element;
+        cin>>element;
+        r.push(element);
+    }
+    while(!r.empty())
+     {
+        int element=r.top();
+        if(s.size()>0)
+            {
+            sor=s.top()^element;
+            if(sor>maxxor)
+                maxxor=sor;
+        }
+        while(!s.empty())
+         {
+            if(s.top()>=element)
+                {
+                sor=s.top()^element;
+               s.pop();
+            }
+           else
+               {
+               
+               t.push(s.top());
+               s.pop();
+           }
+               if(sor>maxxor)
+                   maxxor=sor;
+        }
+        while(!t.empty())
+         {
+            s.push(t.top());
+            t.pop();
+        }
+        s.push(r.top());
+        r.pop();
+    }
+    cout<<maxxor;
+    return 0;
+}

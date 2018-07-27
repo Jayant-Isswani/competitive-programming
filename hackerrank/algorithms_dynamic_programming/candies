@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    scanf("%d",&n);
+    long int arr[100000],arr1[100000];
+    int i;
+    for(i=0;i<n;i++)
+        {
+        scanf("%ld",&arr[i]);
+        arr1[i]=1;
+       }
+    long int sum=0;
+     for(i=n-1;i>0;i--)
+         {
+         if(arr[i]<arr[i-1])
+             arr1[i-1]=arr1[i]+1;
+     }
+    for(i=0;i<n-1;i++)
+        {
+        if(arr[i]<arr[i+1]&&arr1[i]>=arr1[i+1])
+           arr1[i+1]=arr1[i]+1; 
+    }
+    for(i=0;i<n;i++)
+        sum+=arr1[i];
+    printf("%ld",sum);
+    return 0;
+}

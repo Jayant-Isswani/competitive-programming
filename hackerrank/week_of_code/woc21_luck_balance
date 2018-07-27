@@ -1,0 +1,59 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        int a[]=new int[n];
+        int t[]=new int[n];
+        for(int i=0;i<n;i++)
+           {
+            a[i]=sc.nextInt();
+            t[i]=sc.nextInt();
+        }
+        int count=0;
+        int sum=0;
+        for(int i=0;i<n;i++)
+            {
+            if(t[i]==0)
+                sum+=a[i];
+            else
+                count++;
+        }
+        int x[]=new int[count];int pos=0;
+        for(int i=0;i<n;i++)
+            {
+            if(t[i]==1)
+                {
+                x[pos]=a[i];
+                pos++;
+            }
+        }
+        Arrays.sort(x);
+       if(count>=k)
+           {
+        for(int i=count-k;i<count;i++)
+            { 
+            sum+=x[i];
+        }
+        for(int i=0;i<count-k;i++)
+            { 
+            sum-=x[i];
+        }
+       }
+      else
+            {
+            for(int i=0;i<count;i++)
+                {
+                sum+=x[i];
+            }
+        }
+        System.out.println(sum);
+    }
+}

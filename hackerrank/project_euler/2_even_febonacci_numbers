@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int i=1;i<=t;i++)
+            {
+              BigInteger n=sc.nextBigInteger();
+            BigInteger a=BigInteger.valueOf(1);
+             BigInteger b=BigInteger.valueOf(2);
+            BigInteger sum=a.add(b);
+            BigInteger sum1=BigInteger.valueOf(2);
+            
+            while(sum.compareTo(n)<0)
+                {
+                sum=a.add(b);
+                a=b;
+                b=sum;
+                if((sum.mod(BigInteger.valueOf(2))).equals(BigInteger.ZERO)&&sum.compareTo(n)<=0)
+                    sum1=sum1.add(sum);
+            }
+            System.out.println(sum1);
+            
+               
+            
+        }
+    }
+}

@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.util.*;
+/**
+ *
+ * @author ultimate
+ */
+public class LargeDivisor {
+    public static void main(String arg[])
+    {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int i=0;i<t;i++)
+        {
+            int n=sc.nextInt();long k,o;
+            for(int j=1;;j++)
+            {
+                 k=j*(j+1)/2;o=k;int m;
+                int count=1;int count1=1;
+                while(k%2==0)
+                {
+                    k=k/2;
+                    count++;
+                }
+                count1=count1*count;
+                
+                for(m=3;m<=(int)Math.sqrt(k)+1;m+=2)
+                {   count=1;
+                    while(k%m==0)
+                    {
+                        k=k/m;
+                        count++;
+                    }
+                    count1=count1*count;
+                }
+                if(k==m-2&&k!=1)
+                  count1=count1/count*(count+1);  
+                if(k>2&&k!=m-2)
+                    count1=count1*2;
+                
+                if(count1>n)
+                    break;
+            }
+            System.out.println(o);
+        }
+    }
+    
+}

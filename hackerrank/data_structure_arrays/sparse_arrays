@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        String x[]=new String[n];
+        for(int i=0;i<n;i++)
+            {
+            x[i]=sc.next();
+        }
+        int q=sc.nextInt();
+        String x1[]=new String[q];
+        for(int i=0;i<q;i++)
+            {
+            x1[i]=sc.next();
+        }
+        for(int i=0;i<q;i++)
+            { int count=0;
+            for(int j=0;j<n;j++)
+                {
+                if(x1[i].equals(x[j]))
+                    count++;
+            }
+             System.out.println(count);
+        }
+    }
+}

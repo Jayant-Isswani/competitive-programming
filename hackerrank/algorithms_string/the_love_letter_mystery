@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int i=1;i<=t;i++)
+        {
+         String str=sc.next();int count=0;String str1=str;
+            char x[]=str.toCharArray();
+         for(int j=x.length-1;j>=0;j--)
+             {
+             StringBuilder st1=new StringBuilder(str1);
+             if(st1.toString().equals(st1.reverse().toString()))
+                 break;
+             
+             while(x[j]>x[x.length-1-j])
+                 {
+                 x[j]--;
+                 count++;
+             }
+             str1=String.valueOf(x);
+             }
+             System.out.println(count);
+         }
+        }
+    }

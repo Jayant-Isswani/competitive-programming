@@ -1,0 +1,105 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int m=sc.nextInt();
+        int n=sc.nextInt();
+        int r=sc.nextInt();
+        int x[][]=new int[m][n];
+         int i,j;
+        int min;
+        if(m<n)
+            min=m;
+        else
+            min=n;
+        for( i=0;i<m;i++)
+            {
+            for(j=0;j<n;j++)
+                {
+                x[i][j]=sc.nextInt();
+            }
+        }
+       int t;int pos=0;int count=0;
+        for(i=0;i<min/2;i++)
+            {
+            for(j=0;j<min/2;j++)
+                {
+                if(i==j)
+                    count++;
+            }
+        }
+        int[] b=new int[count];
+        
+        for(int c=1;c<=r;c++)
+            {  for(i=0;i<min/2;i++)
+            {
+            for(j=0;j<min/2;j++)
+                {
+                if(i==j)
+                    b[i]=x[i][j];
+            }
+        }
+            for(i=0;i<m/2;i++)
+                { 
+                     
+                    for(j=pos;j<n-pos-1;j++)
+                        {
+                         
+                        x[i][j]=x[i][j+1];
+                    }
+                    pos++;
+                }
+            pos=0;
+            
+                for(i=n-1;i>=n/2;i--)
+                    { 
+                    for(j=pos;j<m-1-pos;j++)
+                        {
+                        x[j][i]=x[j+1][i];
+                    }
+                     pos++;
+                }
+            pos=0;
+                for(i=m-1;i>=m/2;i--)
+                    {  for(j=n-1-pos;j>pos;j--)
+                        {
+                        x[i][j]=x[i][j-1];
+                    }
+                     pos++;
+                }
+            pos=0;
+                for(i=0;i<n/2;i++)
+                  {   
+                    for(j=m-1-pos;j>pos+1;j--)
+                        {
+                        x[j][i]=x[j-1][i];
+                    }
+                   pos++;
+                
+                
+            } pos=0;
+            for(i=0;i<min/2;i++)
+                {
+                for(j=0;j<min/2;j++)
+                    {
+                    if(i==j&&i<m-1)
+                        x[i+1][j]=b[i];
+                }
+            }
+        }
+        for(i=0;i<m;i++)
+            {
+            for(j=0;j<n;j++)
+                {
+                System.out.print(x[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}

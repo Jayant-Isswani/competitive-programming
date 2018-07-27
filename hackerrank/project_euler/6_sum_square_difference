@@ -1,0 +1,19 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner sc=new Scanner(System.in);
+       int t=sc.nextInt();
+       for(int i=0;i<t;i++)
+           {
+           long n=sc.nextInt();
+           long p=n*(n+1)*(n-1)*(3*n+2)/12;
+           System.out.println(p);
+       }
+    }
+}

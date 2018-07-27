@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String time = in.next();
+        
+        int x=Integer.parseInt(time.substring(0,2));
+        char ch=time.charAt(8);
+        if(x!=12&&ch=='P'){
+        x=x+12;
+       System.out.print(x+time.substring(2,8));}
+        else if(x==12&&ch=='A'){
+        x=x-12;
+       System.out.print("0"+x+time.substring(2,8));
+        }
+        else if(x<10)
+             System.out.print("0"+x+time.substring(2,8));
+        else
+             System.out.print(x+time.substring(2,8));
+    }
+}

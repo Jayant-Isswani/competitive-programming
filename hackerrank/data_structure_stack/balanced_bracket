@@ -1,0 +1,66 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+char arr[1000],arr1[1000];int tos;
+void insert(int x)
+{
+    tos++;
+    arr1[tos]=x;
+}
+void delete()
+    {
+    tos--;
+
+}
+int main(){
+    int t; 
+    scanf("%d",&t);
+    while(t--)
+    {
+        tos=-1;
+        scanf("%s",arr);
+        int i;
+        for(i=0;arr[i]!='\0';i++)
+        {  
+            
+            insert(arr[i]);
+            if(arr[i]==')')
+                {
+                
+                if(arr1[tos-1]=='('){
+                    delete();
+                    delete();
+                }
+            }
+            if(arr[i]==']')
+                {
+                
+                if(arr1[tos-1]=='['){
+                    delete();
+                    delete();
+                }
+                 
+            }
+            if(arr[i]=='}')
+                {
+                
+                if(arr1[tos-1]=='{'){
+                    delete();
+                    delete();
+                }
+            }
+            }
+        
+        
+        if(tos==-1)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+
+    return 0;
+}

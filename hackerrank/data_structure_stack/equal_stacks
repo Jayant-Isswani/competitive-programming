@@ -1,0 +1,89 @@
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+stack<int> s1,s2,s3;
+stack<int> t1,t2,t3;
+int main(){
+    int n1,n2,n3,i;
+    int sum1=0,sum2=0,sum3=0;
+    cin >> n1 >> n2 >> n3;
+    for(i=0;i<n1;i++)
+        {
+         int element;
+        scanf("%d",&element);
+        s1.push(element);
+        sum1+=s1.top();
+    }
+    while(!s1.empty())
+        {
+        t1.push(s1.top());
+        s1.pop();
+    }   
+    for(i=0;i<n2;i++)
+        {
+         int element;
+        scanf("%d",&element);
+        s2.push(element);
+        sum2+=s2.top();
+    }
+    while(!s2.empty())
+        {
+        t2.push(s2.top());
+        s2.pop();
+    }   
+    for(i=0;i<n3;i++)
+        {
+         int element;
+        scanf("%d",&element);
+        s3.push(element);
+        sum3+=s3.top();
+    }
+    while(!s3.empty())
+        {
+        t3.push(s3.top());
+        s3.pop();
+    }  
+    while(!(sum1==sum2&&sum2==sum3&&sum1==sum3)&&!(sum1==0||sum2==0||sum3==0))
+    {
+        if(sum1>sum2&&sum1>sum3)
+            {
+            sum1-=t1.top();
+            t1.pop();
+        }
+        else if(sum2>sum3)
+            {
+            sum2-=t2.top();
+            t2.pop();
+        }
+        else
+            {
+            sum3-=t3.top();
+            t3.pop();
+        }
+         }
+    if(sum1==0||sum2==0||sum3==0)
+        printf("%d\n",0);
+    else
+        printf("%d\n",sum1);
+    return 0;
+}

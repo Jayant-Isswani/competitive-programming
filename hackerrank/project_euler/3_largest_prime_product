@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        for(int i=1;i<=t;i++)
+            {
+            long n=sc.nextLong();long x=n;long j;
+            while(n%2==0)
+                {
+                 n=n/2;   
+                
+            }
+            for( j=3;j<=(long)Math.sqrt(x);j=j+2)
+                {
+                while(n%j==0)
+                    {  
+                    n=n/j;
+                }
+              if(n==1)
+                  break;
+                
+            }
+            if(n>2)
+                System.out.println(n);
+            else
+            System.out.println(j);
+              
+            
+                
+        }
+    }
+}

@@ -1,0 +1,50 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for(int a0 = 0; a0 < t; a0++){
+            int R = in.nextInt();
+            int C = in.nextInt();
+            String G[] = new String[R];
+            for(int G_i=0; G_i < R; G_i++){
+                G[G_i] = in.next();
+            }
+            int r = in.nextInt();
+            int c = in.nextInt();
+            String P[] = new String[r];
+            for(int P_i=0; P_i < r; P_i++){
+                P[P_i] = in.next();
+            }
+             int d=0;int j1=0;int j2=C;int i1=0;int i2=R;
+            for(int i=i1;i<i2;i++)
+                {
+                for(int j=j1;j<j2;j++)
+                    {
+                    if(j+c<C&&d<r&&Pattern.matches(G[i].substring(j,j+c),P[d])==true)
+                        {
+                        j1=j;
+                        j2=j+c;
+                        i1=i+1;
+                        d++;
+                   
+                       
+                        break;
+                    
+                    
+                }
+            }
+            }
+            if(d==r)
+                System.out.println("YES");
+            else
+                System.out.println("NO");
+        }
+    }
+}
